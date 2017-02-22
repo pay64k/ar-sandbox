@@ -13,12 +13,17 @@ public class KinectDepth : MonoBehaviour {
 
     private int imageWidth, imageHeight;
 
-    private Color minColor = Color.green;
-    private Color maxColor = Color.red;
-    private Color lerpedColor = Color.white;
+    //private Color32 minColor = Color.HSVToRGB(107f / 360f, 90f / 100f, 90f / 100f);
+    //private Color32 maxColor = Color.HSVToRGB(2f / 360f, 90f / 100f, 90f / 100f);
+    private Color32 minColor;
+    private Color32 maxColor;
 
-    private int minDist = 1000;
-    private int maxDist = 2000;
+    private Color32 lerpedColor = Color.white;
+
+    private Color32[] colorScale;
+
+    private float minDist = 500;
+    private float maxDist = 2500;
 
     private ushort[] _Data;
     private byte[] pixels;
@@ -26,10 +31,10 @@ public class KinectDepth : MonoBehaviour {
     Texture2D texture;
 
     void Start () {
-        texture = new Texture2D(512, 424, TextureFormat.RGBA32, false);
+        texture = new Texture2D(512, 424, TextureFormat.RGB24, false);
         _Sensor = KinectSensor.GetDefault();
 
-        pixels = new byte[512*424*4];
+        pixels = new byte[512*424*3];
 
         imageWidth = _Sensor.DepthFrameSource.FrameDescription.Width;
         imageHeight = _Sensor.DepthFrameSource.FrameDescription.Height;
@@ -38,6 +43,22 @@ public class KinectDepth : MonoBehaviour {
         //ushort maxDepth = _Sensor.DepthFrameSource.DepthMinReliableDistance;
         //print(minDepth.ToString() + " " + maxDepth.ToString());
 
+        
+
+        String[] hexScale6 = { "33E500", "87E808", "D9EC10", "EFB819", "F37421", "F7342A"};
+        String[] hexScale10 = { "33E500", "62E704", "90E909", "BEEB0D", "EAED12", "EFC717", "F1A11B", "F37B20", "F55725", "F7342A" };
+
+        String[] currentScale = hexScale6;
+
+        colorScale = new Color32[currentScale.Length];
+
+        minColor = HexToColor(currentScale[0]);
+        maxColor = HexToColor(currentScale[currentScale.Length-1]);
+
+        for(int i=0; i < currentScale.Length; i++)
+        {
+            colorScale[i] = HexToColor(currentScale[i]);
+        }
 
         if (!_Sensor.IsOpen)
         {
@@ -58,45 +79,60 @@ public class KinectDepth : MonoBehaviour {
             frame.Dispose();
             frame = null;
 
-            
-            for (int colorIndex = 0; colorIndex < 512*424*4; colorIndex+=4)
+
+            for (int colorIndex = 0; colorIndex < 512*424*3; colorIndex+=3)
                 {
 
-                int depth = _Data[colorIndex / 4];
+                float depth = _Data[colorIndex / 3];
 
-                byte[] bla = StringToByteArray(ColorToHex(lerpedColor)); 
+                Color32 currentColor = Color.white;
 
-                if(depth >= minDist && depth <= maxDist )
+                if (depth >= minDist && depth <= maxDist )
                 {
-                    bla = StringToByteArray(ColorToHex(minColor));
+                    var depthToLevelIndex = Map(depth, minDist, maxDist, 0, colorScale.Length-1);
+                    currentColor = colorScale[depthToLevelIndex];
+                    //float newHue = Mathf.Clamp(depth/maxDist/360f, 2f / 360f, 107f / 360f);
+
+                    //currentColor = Color.HSVToRGB(newHue, 90f / 100f, 90f / 100f);
+
+                    //currentColor = Color.Lerp(minColor, maxColor, depth/maxDist);
+
                 }
-                if(depth >= maxDist)
+                else if(depth >= maxDist)
                 {
-                   bla=  StringToByteArray(ColorToHex(maxColor));
+                    currentColor = maxColor;
+                }
+                else if(depth <= maxDist)
+                {
+                    currentColor = minColor;
                 }
 
-                pixels[colorIndex] = bla[0];
-                pixels[colorIndex + 1] = bla[1];
-                pixels[colorIndex + 2] = bla[2];
-                pixels[colorIndex + 3] = 0x00;
+                pixels[colorIndex] = currentColor.r;
+                pixels[colorIndex + 1] = currentColor.g;
+                pixels[colorIndex + 2] = currentColor.b;
 
             }
-                
+            //var bla = Mathf.PingPong(Time.time, 1);
+            //    lerpedColor = Color.Lerp(Color.white, Color.black, bla);
+
             //lerpedColor = Color.Lerp(minColor, maxColor, );
 
             texture.LoadRawTextureData(pixels);
             texture.Apply();
             renderer.material.mainTexture = texture;
         }
-        //print("Data len:" + _Data.Length);
-        //print(pixels.Length/4);
+
         
     }
-
-    string ColorToHex(Color32 color)
+    
+    void PrintFrameSpecs()
     {
-        string hex = color.r.ToString("X2") + color.g.ToString("X2") + color.b.ToString("X2");
-        return hex;
+        //print(_Reader.DepthFrameSource.FrameDescription.BytesPerPixel);         //2
+        //print(_Reader.DepthFrameSource.FrameDescription.DiagonalFieldOfView);   //89.5
+        //print(_Reader.DepthFrameSource.FrameDescription.HorizontalFieldOfView); //70.6
+        //print(_Reader.DepthFrameSource.FrameDescription.VerticalFieldOfView);   //60
+        //print(_Reader.DepthFrameSource.FrameDescription.Height);    //424
+        //print(_Reader.DepthFrameSource.FrameDescription.Width);     //512
     }
 
     Color HexToColor(string hex)
@@ -107,23 +143,11 @@ public class KinectDepth : MonoBehaviour {
         return new Color32(r, g, b, 255);
     }
 
-    public static byte[] StringToByteArray(string hex)
+
+    int Map(float x, float in_min, float in_max, float out_min, float out_max)
     {
-        int NumberChars = hex.Length;
-        byte[] bytes = new byte[NumberChars / 2];
-        for (int i = 0; i < NumberChars; i += 2)
-            bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
-        return bytes;
+        return Mathf.RoundToInt((x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min);
     }
 
-    void PrintFrameSpecs()
-    {
-        //print(_Reader.DepthFrameSource.FrameDescription.BytesPerPixel);         //2
-        //print(_Reader.DepthFrameSource.FrameDescription.DiagonalFieldOfView);   //89.5
-        //print(_Reader.DepthFrameSource.FrameDescription.HorizontalFieldOfView); //70.6
-        //print(_Reader.DepthFrameSource.FrameDescription.VerticalFieldOfView);   //60
-        //print(_Reader.DepthFrameSource.FrameDescription.Height);    //424
-        //print(_Reader.DepthFrameSource.FrameDescription.Width);     //512
-    }
 }
 
