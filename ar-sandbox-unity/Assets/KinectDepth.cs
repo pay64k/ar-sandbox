@@ -34,6 +34,12 @@ public class KinectDepth : MonoBehaviour {
         texture = new Texture2D(512, 424, TextureFormat.RGB24, false);
         _Sensor = KinectSensor.GetDefault();
 
+        //if (!_Sensor.IsAvailable)
+        //{
+        //    print("no kinect v2 connected");
+        //    return;
+        //}
+
         pixels = new byte[512*424*3];
 
         imageWidth = _Sensor.DepthFrameSource.FrameDescription.Width;
@@ -44,7 +50,7 @@ public class KinectDepth : MonoBehaviour {
         //print(minDepth.ToString() + " " + maxDepth.ToString());
 
         
-
+        //http://www.perbang.dk/rgbgradient/
         String[] hexScale6 = { "33E500", "87E808", "D9EC10", "EFB819", "F37421", "F7342A"};
         String[] hexScale10 = { "33E500", "62E704", "90E909", "BEEB0D", "EAED12", "EFC717", "F1A11B", "F37B20", "F55725", "F7342A" };
 
@@ -70,6 +76,12 @@ public class KinectDepth : MonoBehaviour {
     }
 	
 	void Update () {
+
+        //if (!_Sensor.IsAvailable)
+        //{
+        //    return;
+        //}
+
         Renderer renderer = GetComponent<Renderer>();
         var frame = _Reader.AcquireLatestFrame();
 
@@ -89,14 +101,8 @@ public class KinectDepth : MonoBehaviour {
 
                 if (depth >= minDist && depth <= maxDist )
                 {
-                    var depthToLevelIndex = Map(depth, minDist, maxDist, 0, colorScale.Length-1);
+                    var depthToLevelIndex = MapRange(depth, minDist, maxDist, 0, colorScale.Length-1);
                     currentColor = colorScale[depthToLevelIndex];
-                    //float newHue = Mathf.Clamp(depth/maxDist/360f, 2f / 360f, 107f / 360f);
-
-                    //currentColor = Color.HSVToRGB(newHue, 90f / 100f, 90f / 100f);
-
-                    //currentColor = Color.Lerp(minColor, maxColor, depth/maxDist);
-
                 }
                 else if(depth >= maxDist)
                 {
@@ -112,10 +118,6 @@ public class KinectDepth : MonoBehaviour {
                 pixels[colorIndex + 2] = currentColor.b;
 
             }
-            //var bla = Mathf.PingPong(Time.time, 1);
-            //    lerpedColor = Color.Lerp(Color.white, Color.black, bla);
-
-            //lerpedColor = Color.Lerp(minColor, maxColor, );
 
             texture.LoadRawTextureData(pixels);
             texture.Apply();
@@ -144,7 +146,7 @@ public class KinectDepth : MonoBehaviour {
     }
 
 
-    int Map(float x, float in_min, float in_max, float out_min, float out_max)
+    int MapRange(float x, float in_min, float in_max, float out_min, float out_max)
     {
         return Mathf.RoundToInt((x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min);
     }
