@@ -23,7 +23,7 @@ public class KinectDepth : MonoBehaviour {
     private Color32[] colorScale;
 
     private float minDist = 500;
-    private float maxDist = 2500;
+    private float maxDist = 2000;
 
     private ushort[] _Data;
     private byte[] pixels;
@@ -34,11 +34,11 @@ public class KinectDepth : MonoBehaviour {
         texture = new Texture2D(512, 424, TextureFormat.RGB24, false);
         _Sensor = KinectSensor.GetDefault();
 
-        //if (!_Sensor.IsAvailable)
-        //{
-        //    print("no kinect v2 connected");
-        //    return;
-        //}
+        if (!_Sensor.IsAvailable)
+        {
+            print("no kinect v2 connected");
+            return;
+        }
 
         pixels = new byte[512*424*3];
 
@@ -77,10 +77,10 @@ public class KinectDepth : MonoBehaviour {
 	
 	void Update () {
 
-        //if (!_Sensor.IsAvailable)
-        //{
-        //    return;
-        //}
+        if (!_Sensor.IsAvailable)
+        {
+            return;
+        }
 
         Renderer renderer = GetComponent<Renderer>();
         var frame = _Reader.AcquireLatestFrame();
