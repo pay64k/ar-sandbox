@@ -13,8 +13,6 @@ public class KinectDepth : MonoBehaviour {
 
     private int imageWidth, imageHeight;
 
-    //private Color32 minColor = Color.HSVToRGB(107f / 360f, 90f / 100f, 90f / 100f);
-    //private Color32 maxColor = Color.HSVToRGB(2f / 360f, 90f / 100f, 90f / 100f);
     private Color32 minColor;
     private Color32 maxColor;
 
@@ -22,8 +20,8 @@ public class KinectDepth : MonoBehaviour {
 
     private Color32[] colorScale;
 
-    private float minDist = 500;
-    private float maxDist = 2000;
+    private float minDist = 840;
+    private float maxDist = 1040;
 
     private ushort[] _Data;
     private byte[] pixels;
@@ -51,10 +49,12 @@ public class KinectDepth : MonoBehaviour {
 
         
         //http://www.perbang.dk/rgbgradient/
-        String[] hexScale6 = { "33E500", "87E808", "D9EC10", "EFB819", "F37421", "F7342A"};
-        String[] hexScale10 = { "33E500", "62E704", "90E909", "BEEB0D", "EAED12", "EFC717", "F1A11B", "F37B20", "F55725", "F7342A" };
+        String[] hexScale6 =            { "33E500", "87E808", "D9EC10", "EFB819", "F37421", "F7342A"};
+        String[] hexScale6Reverse =     { "F7342A", "F37421", "EFB819", "D9EC10", "87E808", "33E500" };
+        String[] hexScale10 =           { "33E500", "62E704", "90E909", "BEEB0D", "EAED12", "EFC717", "F1A11B", "F37B20", "F55725", "F7342A" };
+        String[] hexScale10Reverse =    { "F7342A", "F55725", "F37B20", "F1A11B", "EFC717", "EAED12", "BEEB0D", "90E909", "62E704", "33E500" };
 
-        String[] currentScale = hexScale6;
+        String[] currentScale = hexScale10Reverse;
 
         colorScale = new Color32[currentScale.Length];
 
