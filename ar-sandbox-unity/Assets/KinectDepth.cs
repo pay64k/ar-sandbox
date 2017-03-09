@@ -20,8 +20,8 @@ public class KinectDepth : MonoBehaviour {
 
     private Color32[] colorScale;
 
-    private float minDist = 1100;
-    private float maxDist = 1200;
+    private float minDist = 760;
+    private float maxDist = 890;
 
     private ushort[] _Data;
     private byte[] pixels;
