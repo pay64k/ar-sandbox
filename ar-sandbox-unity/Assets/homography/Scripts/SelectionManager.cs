@@ -33,9 +33,11 @@ public class SelectionManager : MonoBehaviour {
 	public bool indexChanged;
 	private bool dynamicControllerVisibility;
 	public bool startHomography = true;
-	
-	// Use this for initialization
-	void Start () {
+
+    public float moveSpeed = 1f;
+
+    // Use this for initialization
+    void Start () {
 	
 		dynamicControllersParent = GameObject.Find("DynamicControllers");
 		staticControllersParent = GameObject.Find("StaticControllers");
@@ -72,9 +74,27 @@ public class SelectionManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-		if(indexChanged == true){
-			
+
+        var move = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+        string name = "DynamicSphere" + ( activeIndex + 1 ).ToString();
+        GameObject activeSphere = GameObject.Find(name);
+        activeSphere.transform.position += move * moveSpeed * Time.deltaTime;
+
+        if (Input.GetKeyDown("space"))
+        {
+            print(activeIndex);
+            if (activeIndex >= 3)
+            {
+                activeIndex = 0;
+            }
+            else
+            {
+                activeIndex++;
+            }
+            indexChanged = true;
+        }
+
+        if (indexChanged == true){
 			//Change colour of active controller to green
 			indexChanged = false;
 			dynamicControllers[lastActiveIndex].GetComponent<Renderer>().material.color = Color.red;
@@ -85,21 +105,21 @@ public class SelectionManager : MonoBehaviour {
 		
 		//Toggle dynamic controllers visibility
 		
-		if(Input.GetButtonUp("ToggleController")){
-			if(dynamicControllerVisibility == true){
-				dynamicControllerVisibility = false;
-				foreach(Transform child in dynamicControllersParent.transform){
-					child.GetComponent<Renderer>().enabled = false;
-				}
-			}
-			else {
-				dynamicControllerVisibility = true;
-				foreach(Transform child in dynamicControllersParent.transform){
-					child.GetComponent<Renderer>().enabled = true;
-				}
+		//if(Input.GetButtonUp("ToggleController")){
+		//	if(dynamicControllerVisibility == true){
+		//		dynamicControllerVisibility = false;
+		//		foreach(Transform child in dynamicControllersParent.transform){
+		//			child.GetComponent<Renderer>().enabled = false;
+		//		}
+		//	}
+		//	else {
+		//		dynamicControllerVisibility = true;
+		//		foreach(Transform child in dynamicControllersParent.transform){
+		//			child.GetComponent<Renderer>().enabled = true;
+		//		}
 				
-			}
-		}		
+		//	}
+		//}		
 	}
 	
 }

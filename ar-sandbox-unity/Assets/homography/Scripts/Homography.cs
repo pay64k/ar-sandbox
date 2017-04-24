@@ -54,14 +54,14 @@ public class Homography : MonoBehaviour {
                 destination[i] = MVP.MultiplyPoint(manager.dynamicControllers[i].transform.position);
             }
 
-            Debug.Log("Source: " + source[0]);
-            Debug.Log("Dest: " + destination[0]);
-            Debug.Log("Source1: " + source[1]);
-            Debug.Log("Dest1: " + destination[1]);
-            Debug.Log("Source2: " + source[2]);
-            Debug.Log("Dest2: " + destination[2]);
-            Debug.Log("Source3: " + source[3]);
-            Debug.Log("Dest3: " + destination[3]);
+            //Debug.Log("Source: " + source[0]);
+            //Debug.Log("Dest: " + destination[0]);
+            //Debug.Log("Source1: " + source[1]);
+            //Debug.Log("Dest1: " + destination[1]);
+            //Debug.Log("Source2: " + source[2]);
+            //Debug.Log("Dest2: " + destination[2]);
+            //Debug.Log("Source3: " + source[3]);
+            //Debug.Log("Dest3: " + destination[3]);
 
             FindHomography(ref source, ref destination, ref matrix);
          
