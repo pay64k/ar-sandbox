@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Windows.Kinect;
 
-public class KinectDepth : MonoBehaviour {
+public class KinectDepth : MonoBehaviour
+{
     private KinectSensor _Sensor;
 
     private DepthFrameReader _Reader;
@@ -28,7 +29,8 @@ public class KinectDepth : MonoBehaviour {
 
     Texture2D texture;
 
-    void Start () {
+    void Start()
+    {
         texture = new Texture2D(512, 424, TextureFormat.RGB24, false);
         _Sensor = KinectSensor.GetDefault();
 
@@ -38,7 +40,7 @@ public class KinectDepth : MonoBehaviour {
         //    return;
         //}
 
-        pixels = new byte[512*424*3];
+        pixels = new byte[512 * 424 * 3];
 
         imageWidth = _Sensor.DepthFrameSource.FrameDescription.Width;
         imageHeight = _Sensor.DepthFrameSource.FrameDescription.Height;
@@ -47,21 +49,21 @@ public class KinectDepth : MonoBehaviour {
         //ushort maxDepth = _Sensor.DepthFrameSource.DepthMinReliableDistance;
         //print(minDepth.ToString() + " " + maxDepth.ToString());
 
-        
+
         //http://www.perbang.dk/rgbgradient/
-        String[] hexScale6 =            { "33E500", "87E808", "D9EC10", "EFB819", "F37421", "F7342A"};
-        String[] hexScale6Reverse =     { "F7342A", "F37421", "EFB819", "D9EC10", "87E808", "33E500" };
-        String[] hexScale10 =           { "33E500", "62E704", "90E909", "BEEB0D", "EAED12", "EFC717", "F1A11B", "F37B20", "F55725", "F7342A" };
-        String[] hexScale10Reverse =    { "F7342A", "F55725", "F37B20", "F1A11B", "EFC717", "EAED12", "BEEB0D", "90E909", "62E704", "33E500" };
+        String[] hexScale6 = { "33E500", "87E808", "D9EC10", "EFB819", "F37421", "F7342A" };
+        String[] hexScale6Reverse = { "F7342A", "F37421", "EFB819", "D9EC10", "87E808", "33E500" };
+        String[] hexScale10 = { "33E500", "62E704", "90E909", "BEEB0D", "EAED12", "EFC717", "F1A11B", "F37B20", "F55725", "F7342A" };
+        String[] hexScale10Reverse = { "F7342A", "F55725", "F37B20", "F1A11B", "EFC717", "EAED12", "BEEB0D", "90E909", "62E704", "33E500" };
 
         String[] currentScale = hexScale10Reverse;
 
         colorScale = new Color32[currentScale.Length];
 
         minColor = HexToColor(currentScale[0]);
-        maxColor = HexToColor(currentScale[currentScale.Length-1]);
+        maxColor = HexToColor(currentScale[currentScale.Length - 1]);
 
-        for(int i=0; i < currentScale.Length; i++)
+        for (int i = 0; i < currentScale.Length; i++)
         {
             colorScale[i] = HexToColor(currentScale[i]);
         }
@@ -74,8 +76,9 @@ public class KinectDepth : MonoBehaviour {
             print("----Kinect started----");
         }
     }
-	
-	void Update () {
+
+    void Update()
+    {
 
         if (!_Sensor.IsAvailable)
         {
@@ -92,23 +95,23 @@ public class KinectDepth : MonoBehaviour {
             frame = null;
 
 
-            for (int colorIndex = 0; colorIndex < 512*424*3; colorIndex+=3)
-                {
+            for (int colorIndex = 0; colorIndex < 512 * 424 * 3; colorIndex += 3)
+            {
 
                 float depth = _Data[colorIndex / 3];
 
                 Color32 currentColor = Color.white;
 
-                if (depth >= minDist && depth <= maxDist )
+                if (depth >= minDist && depth <= maxDist)
                 {
-                    var depthToLevelIndex = MapRange(depth, minDist, maxDist, 0, colorScale.Length-1);
+                    var depthToLevelIndex = MapRange(depth, minDist, maxDist, 0, colorScale.Length - 1);
                     currentColor = colorScale[depthToLevelIndex];
                 }
-                else if(depth >= maxDist)
+                else if (depth >= maxDist)
                 {
                     currentColor = maxColor;
                 }
-                else if(depth <= maxDist)
+                else if (depth <= maxDist)
                 {
                     currentColor = minColor;
                 }
@@ -124,9 +127,9 @@ public class KinectDepth : MonoBehaviour {
             renderer.material.mainTexture = texture;
         }
 
-        
+
     }
-    
+
     void PrintFrameSpecs()
     {
         //print(_Reader.DepthFrameSource.FrameDescription.BytesPerPixel);         //2
@@ -149,6 +152,11 @@ public class KinectDepth : MonoBehaviour {
     int MapRange(float x, float in_min, float in_max, float out_min, float out_max)
     {
         return Mathf.RoundToInt((x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min);
+    }
+
+    public ushort[] GetDepthData()
+    {
+        return _Data;
     }
 
 }
