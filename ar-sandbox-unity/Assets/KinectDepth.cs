@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,6 +27,10 @@ public class KinectDepth : MonoBehaviour
 
     private ushort[] _Data;
     private byte[] pixels;
+
+    public bool displayTexture = true;
+
+    private int counter = 0;
 
     Texture2D texture;
 
@@ -80,6 +85,11 @@ public class KinectDepth : MonoBehaviour
     void Update()
     {
 
+        if (Input.GetKeyDown("c"))
+        {
+            displayTexture = false;
+        }
+
         if (!_Sensor.IsAvailable)
         {
             return;
@@ -122,9 +132,23 @@ public class KinectDepth : MonoBehaviour
 
             }
 
-            texture.LoadRawTextureData(pixels);
-            texture.Apply();
-            renderer.material.mainTexture = texture;
+            if (displayTexture)
+            {
+                texture.LoadRawTextureData(pixels);
+                texture.Apply();
+                renderer.material.mainTexture = texture;
+            }
+            else
+            {
+                print("written file no: " + counter.ToString());
+                string[] foo = _Data.OfType<object>().Select(o => o.ToString()).ToArray();
+                System.IO.File.WriteAllLines(@"C:\Users\Public\TestFolder\HeightMap" + counter + ".txt", foo);
+                counter++;
+                displayTexture = true;
+
+            }
+
+
         }
 
 

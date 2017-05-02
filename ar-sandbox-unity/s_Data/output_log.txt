@@ -23,50 +23,33 @@ Platform assembly: C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity
 Loading C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity\s_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
 Platform assembly: C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity\s_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
 Loading C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity\s_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-- Completed reload, in  0.024 seconds
+- Completed reload, in  0.064 seconds
 Platform assembly: C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity\s_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity\s_Data\Managed\System.dll (this message is harmless)
 Platform assembly: C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity\s_Data\Managed\UnityScript.Lang.dll (this message is harmless)
 Platform assembly: C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity\s_Data\Managed\Boo.Lang.dll (this message is harmless)
-desktop: 1920x1200 59Hz; virtual: 3200x1200 at 0,0
+desktop: 1280x800 60Hz; virtual: 3200x1200 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
-desktop: 1280x800 60Hz; virtual: 3200x1200 at 0,0
 <RI> Initialized touch support.
-UnloadTime: 0.854098 ms
+UnloadTime: 0.948119 ms
 ----Kinect started----
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-0
+written file no: 0
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-1
+written file no: 1
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-2
+written file no: 2
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-3
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-0
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-1
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-2
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-3
+written file no: 3
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
@@ -150,22 +133,70 @@ UnloadTime: 0.854098 ms
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
+written file no: 4
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+written file no: 5
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+written file no: 6
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+written file no: 7
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+written file no: 8
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+written file no: 9
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+written file no: 10
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+written file no: 11
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+written file no: 12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+written file no: 13
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
 0
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-1
+written file no: 14
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-2
+written file no: 15
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-3
+written file no: 16
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+written file no: 17
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+written file no: 18
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 2900 -> priority: 1 
-  Thread -> id: 3650 -> priority: 1 
+  Thread -> id: 2730 -> priority: 1 
+  Thread -> id: 14f0 -> priority: 1 
