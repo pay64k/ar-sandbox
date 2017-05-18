@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/KinectView/MainScene.unity
+- path: Assets/KinectView/scene_calibration_markers.unity
   isLoaded: 1
   isActive: 1

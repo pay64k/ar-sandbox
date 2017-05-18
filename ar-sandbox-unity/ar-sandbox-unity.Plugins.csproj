@@ -204,6 +204,7 @@
   <ItemGroup>
     <None Include="Assets\GreenScreen\Materials\GreenScreenShader.shader" />
     <None Include="Assets\NewUnlitShader.shader" />
+    <None Include="Assets\Shaders\Example.shader" />
     <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\BlendModesOverlay.shader" />
     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\BlurEffectConeTaps.shader" />

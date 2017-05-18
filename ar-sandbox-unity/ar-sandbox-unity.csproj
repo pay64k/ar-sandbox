@@ -92,9 +92,11 @@
     <Compile Include="Assets\KinectView\Scripts\DepthSourceManager.cs" />
     <Compile Include="Assets\KinectView\Scripts\DepthSourceView.cs" />
     <Compile Include="Assets\KinectView\Scripts\DisableOnStart.cs" />
+    <Compile Include="Assets\KinectView\Scripts\FileSaver.cs" />
     <Compile Include="Assets\KinectView\Scripts\InfraredSourceManager.cs" />
     <Compile Include="Assets\KinectView\Scripts\InfraredSourceView.cs" />
     <Compile Include="Assets\KinectView\Scripts\MultiSourceManager.cs" />
+    <Compile Include="Assets\NewMesh.cs" />
     <Compile Include="Assets\Plane_Mesh_Script.cs" />
     <Compile Include="Assets\Sources\LightningBolt.cs" />
     <Compile Include="Assets\depthTerrain.cs" />
@@ -105,6 +107,7 @@
   <ItemGroup>
     <None Include="Assets\GreenScreen\Materials\GreenScreenShader.shader" />
     <None Include="Assets\NewUnlitShader.shader" />
+    <None Include="Assets\Shaders\Example.shader" />
     <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\BlendModesOverlay.shader" />
     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\BlurEffectConeTaps.shader" />

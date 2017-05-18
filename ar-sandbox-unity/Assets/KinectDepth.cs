@@ -22,23 +22,26 @@ public class KinectDepth : MonoBehaviour
 
     private Color32[] colorScale;
 
-    private float minDist = 760;
-    private float maxDist = 890;
+    public float minDist = 1000;
+    public float maxDist = 1200;
 
     private ushort[] _Data;
     private byte[] pixels;
+    private float[] heightPixels;
 
     public bool displayTexture = true;
 
     private int counter = 0;
+    private FileSaver fileSaver = new FileSaver();
 
     Texture2D texture;
+    Texture2D heightTexture;
 
     void Start()
     {
         texture = new Texture2D(512, 424, TextureFormat.RGB24, false);
+        heightTexture = new Texture2D(512, 424, TextureFormat.RFloat, false);
         _Sensor = KinectSensor.GetDefault();
-
         //if (!_Sensor.IsAvailable)
         //{
         //    print("no kinect v2 connected");
@@ -46,6 +49,7 @@ public class KinectDepth : MonoBehaviour
         //}
 
         pixels = new byte[512 * 424 * 3];
+        heightPixels = new float[512 * 424 * 1];
 
         imageWidth = _Sensor.DepthFrameSource.FrameDescription.Width;
         imageHeight = _Sensor.DepthFrameSource.FrameDescription.Height;
@@ -61,7 +65,24 @@ public class KinectDepth : MonoBehaviour
         String[] hexScale10 = { "33E500", "62E704", "90E909", "BEEB0D", "EAED12", "EFC717", "F1A11B", "F37B20", "F55725", "F7342A" };
         String[] hexScale10Reverse = { "F7342A", "F55725", "F37B20", "F1A11B", "EFC717", "EAED12", "BEEB0D", "90E909", "62E704", "33E500" };
 
-        String[] currentScale = hexScale10Reverse;
+        String[] scale14 = {"F73329",
+                            "F54C26",
+                            "F46423",
+                            "F27E1F",
+                            "F1981C",
+                            "F0B219",
+                            "EECD15",
+                            "EDE812",
+                            "D3EB0F",
+                            "B3EA0C",
+                            "94E909",
+                            "74E706",
+                            "53E603",
+                            "33E500"};
+
+
+
+        String[] currentScale = scale14;
 
         colorScale = new Color32[currentScale.Length];
 
@@ -87,7 +108,7 @@ public class KinectDepth : MonoBehaviour
 
         if (Input.GetKeyDown("c"))
         {
-            displayTexture = false;
+            fileSaver.SaveDepthMap(_Data);
         }
 
         if (!_Sensor.IsAvailable)
@@ -125,30 +146,25 @@ public class KinectDepth : MonoBehaviour
                 {
                     currentColor = minColor;
                 }
+                var bla = (byte)MapRange(depth, minDist, maxDist, 255, 0); //255 max
+                pixels[colorIndex] = bla;
 
-                pixels[colorIndex] = currentColor.r;
+                //pixels[colorIndex] = currentColor.r;
                 pixels[colorIndex + 1] = currentColor.g;
                 pixels[colorIndex + 2] = currentColor.b;
 
-            }
-
-            if (displayTexture)
-            {
-                texture.LoadRawTextureData(pixels);
-                texture.Apply();
-                renderer.material.mainTexture = texture;
-            }
-            else
-            {
-                print("written file no: " + counter.ToString());
-                string[] foo = _Data.OfType<object>().Select(o => o.ToString()).ToArray();
-                System.IO.File.WriteAllLines(@"C:\Users\Public\TestFolder\HeightMap" + counter + ".txt", foo);
-                counter++;
-                displayTexture = true;
+                //heightPixels[colorIndex / 3] = 1;
 
             }
 
-
+            texture.LoadRawTextureData(pixels);
+            //heightTexture.LoadRawTextureData(heightPixels);
+            texture.Apply();
+            //heightTexture.Apply();
+            //renderer.material.mainTexture = texture;
+            renderer.material.SetTexture("_MainTex", texture);
+            //renderer.material.SetTexture("HeightMap", heightTexture);
+            //renderer.material.SetFloatArray("HeightMapFloat", heightPixels);
         }
 
 

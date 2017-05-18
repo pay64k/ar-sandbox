@@ -36,6 +36,8 @@ public class SelectionManager : MonoBehaviour {
 
     public float moveSpeed = 1f;
 
+    private FileSaver fileSaver = new FileSaver();
+
     // Use this for initialization
     void Start () {
 	
@@ -56,7 +58,6 @@ public class SelectionManager : MonoBehaviour {
 		
 		startHomography = true;
 		
-		
 		//Turn off visibility of static controllers
 		foreach(Transform child in staticControllersParent.transform){
 			staticControllers.Add(child.gameObject);
@@ -74,15 +75,28 @@ public class SelectionManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        var move = new Vector3();
+        if (Input.GetKey("q"))
+        {
+            move = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0.5f);
+        }
 
-        var move = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+        else if(Input.GetKey("z")){
+            move = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), -0.5f);
+        }
+
+        else
+        {
+            move = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+        }
+
+        //var move = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
         string name = "DynamicSphere" + ( activeIndex + 1 ).ToString();
         GameObject activeSphere = GameObject.Find(name);
         activeSphere.transform.position += move * moveSpeed * Time.deltaTime;
 
         if (Input.GetKeyDown("space"))
         {
-            print(activeIndex);
             if (activeIndex >= 3)
             {
                 activeIndex = 0;
@@ -92,6 +106,16 @@ public class SelectionManager : MonoBehaviour {
                 activeIndex++;
             }
             indexChanged = true;
+        }
+
+        if (Input.GetKeyDown("1"))
+        {
+            SaveCalibration();
+        }
+
+        if (Input.GetKeyDown("2"))
+        {
+            ReadCalibration();
         }
 
         if (indexChanged == true){
@@ -122,4 +146,27 @@ public class SelectionManager : MonoBehaviour {
 		//}		
 	}
 	
+    void SaveCalibration()
+    {
+        Vector3[] positions = new Vector3[4];
+        for(int i=0; i < 4; i++)
+        {
+            string name = "DynamicSphere" + (i + 1).ToString();
+            GameObject activeSphere = GameObject.Find(name);
+            positions[i] = activeSphere.transform.position;
+        }
+        fileSaver.SaveCalibration(positions);
+    }
+
+    void ReadCalibration()
+    {
+        Vector3[] positions = fileSaver.ReadCalibration();
+        for (int i = 0; i < 4; i++)
+        {
+            string name = "DynamicSphere" + (i + 1).ToString();
+            GameObject activeSphere = GameObject.Find(name);
+            activeSphere.transform.position = positions[i];
+        }
+    }
+
 }
