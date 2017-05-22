@@ -13,8 +13,6 @@ Platform assembly: C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity
 Loading C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity\s_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
 Platform assembly: C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity\s_Data\Managed\Assembly-CSharp.dll (this message is harmless)
 Loading C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity\s_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity\s_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
-Loading C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity\s_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
 Platform assembly: C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity\s_Data\Managed\UnityEngine.UI.dll (this message is harmless)
 Loading C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity\s_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
 Platform assembly: C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity\s_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
@@ -23,20 +21,24 @@ Platform assembly: C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity
 Loading C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity\s_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
 Platform assembly: C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity\s_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
 Loading C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity\s_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-- Completed reload, in  0.025 seconds
+- Completed reload, in  0.142 seconds
 Platform assembly: C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity\s_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity\s_Data\Managed\System.dll (this message is harmless)
-Platform assembly: C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity\s_Data\Managed\UnityScript.Lang.dll (this message is harmless)
-Platform assembly: C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity\s_Data\Managed\Boo.Lang.dll (this message is harmless)
 desktop: 1280x800 60Hz; virtual: 3200x1200 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 0.859209 ms
+UnloadTime: 1.057726 ms
+Platform assembly: C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity\s_Data\Managed\System.Runtime.Serialization.dll (this message is harmless)
+Platform assembly: C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity\s_Data\Managed\System.Xml.dll (this message is harmless)
 ----Kinect started----
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 858 -> priority: 1 
-  Thread -> id: 1d24 -> priority: 1 
+  Thread -> id: 30e0 -> priority: 1 
+  Thread -> id: 2498 -> priority: 1 
+Loaded camera: (0.1327, 4.114, -0.3782)(0.7069, -0.01837, 0.01738, 0.7068)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+

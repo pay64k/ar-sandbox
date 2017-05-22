@@ -42,22 +42,37 @@ Shader "Unlit/AlessandroExample"
 
 			fixed4 get_color(float height)
 			{
-				fixed4 bla = (1.0, 0.0, 0.0, 1.0);
+				fixed4 color = (1.0, 1.0, 1.0, 1.0);
 
-				if (height < 200.0) {
-					bla = fixed4(0.0, 1.0, 0.0, 1.0);
+				if (height < 0.10f) {
+					color = fixed4(0.2, 0.9, 0.0, 1.0);
 				}
-				else {
-					bla = fixed4(0.0, 0.0, 1.0, 1.0);
+
+				else if (height < 0.2f) {
+					color = fixed4(0.61, 0.91, 0.04, 1.0);
 				}
-				return bla;
+				
+				else if (height < 0.30f) {
+					color = fixed4(0.93, 0.86, 0.08, 1.0);
+				}
+
+				else if (height < 0.40f) {
+					color = fixed4(0.95, 0.52, 0.12, 1.0);
+				}
+				
+				else if (height < 0.50f) {
+					color = fixed4(0.97, 0.20, 0.16, 1.0);
+				}
+
+				return color;
+
 			}
 			
 			v2f vert(appdata v)
 			{
 				v2f o;
 				//float height = v.vertex.z + 1.0;// 
-				float4 vertexws = mul(unity_ObjectToWorld, v.vertex);
+				float4 vertexws = mul(1, v.vertex);
 
 				float height = vertexws.y + tex2Dlod(_MainTex, float4(v.uv, 0, 0)).x;
 

@@ -41,6 +41,25 @@ public class FileSaver {
         return positions;
     }
 
+    public void saveCameraPosition(Vector3 position, Quaternion rotation)
+    {
+
+        System.IO.File.WriteAllLines(@"C:\Users\s127578\Desktop\testFolder\TEST.txt", new string[2] { position.ToString("G4"), rotation.ToString("G4") });
+        MonoBehaviour.print("Saved camera: " + position.ToString("G4") + rotation.ToString("G4"));
+    }
+
+    public ArrayList loadCameraPosition()
+    {
+        string[] lines = System.IO.File.ReadAllLines(@"C:\Users\s127578\Desktop\testFolder\TEST.txt");
+        Vector3 position = StringToVector3(lines[0]);
+        Quaternion rotation = StringToQuanterion(lines[1]);
+        ArrayList list = new ArrayList();
+        list.Add(position);
+        list.Add(rotation);
+        MonoBehaviour.print("Loaded camera: " + position.ToString("G4") + rotation.ToString("G4"));
+        return list;
+    }
+
     public static Vector3 StringToVector3(string sVector)
     {
         // Remove the parentheses
@@ -61,6 +80,26 @@ public class FileSaver {
         return result;
     }
 
+    public static Quaternion StringToQuanterion(string sVector)
+    {
+        // Remove the parentheses
+        if (sVector.StartsWith("(") && sVector.EndsWith(")"))
+        {
+            sVector = sVector.Substring(1, sVector.Length - 2);
+        }
+
+        // split the items
+        string[] sArray = sVector.Split(',');
+
+        // store as a Vector3
+        Quaternion result = new Quaternion(
+            float.Parse(sArray[0]),
+            float.Parse(sArray[1]),
+            float.Parse(sArray[2]),
+            float.Parse(sArray[3]));
+        return result;
+    }
+
     public string[] Vector3ToString(Vector3[] list)
     {
         string[] pos = new string[4];
@@ -70,4 +109,6 @@ public class FileSaver {
         }
         return pos;
     }
+
+
 }
