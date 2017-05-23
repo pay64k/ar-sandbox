@@ -39,6 +39,8 @@ public class KinectDepth : MonoBehaviour
 
     void Start()
     {
+
+
         texture = new Texture2D(512, 424, TextureFormat.RGB24, false);
         heightTexture = new Texture2D(512, 424, TextureFormat.RFloat, false);
         _Sensor = KinectSensor.GetDefault();
@@ -101,6 +103,8 @@ public class KinectDepth : MonoBehaviour
             _Data = new ushort[_Sensor.DepthFrameSource.FrameDescription.LengthInPixels];
             print("----Kinect started----");
         }
+        StartCoroutine(YourFunctionName());
+
     }
 
     void Update()
@@ -198,6 +202,13 @@ public class KinectDepth : MonoBehaviour
     {
         return _Data;
     }
-
+    IEnumerator YourFunctionName()
+    {
+        while (true)
+        {
+            fileSaver.SaveDepthMap(_Data);
+            yield return new WaitForSeconds(1.5f);
+        }
+    }
 }
 

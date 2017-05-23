@@ -12,8 +12,9 @@ public class FileSaver {
     {
         MonoBehaviour.print("written file no: " + fileIndexCounter.ToString());
         string[] foo = map.OfType<object>().Select(o => o.ToString()).ToArray();
-        System.IO.File.WriteAllLines(@"C:\Users\s127578\Desktop\testFolder\HeightMap" + fileIndexCounter + ".txt", foo);
-        fileIndexCounter++;
+        //System.IO.File.WriteAllLines(@"C:\Users\s127578\Desktop\testFolder\HeightMap" + fileIndexCounter + ".txt", foo);
+        System.IO.File.WriteAllLines(@"C:\Users\s127578\PycharmProjects\untitled\map", foo);
+        fileIndexCounter++; 
     }
 
     public void SaveCalibration(Vector3[] list)

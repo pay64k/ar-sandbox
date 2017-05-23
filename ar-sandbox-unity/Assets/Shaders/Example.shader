@@ -72,7 +72,7 @@ Shader "Unlit/AlessandroExample"
 			{
 				v2f o;
 				//float height = v.vertex.z + 1.0;// 
-				float4 vertexws = mul(1, v.vertex);
+				float4 vertexws = mul(unity_ObjectToWorld, v.vertex);
 
 				float height = vertexws.y + tex2Dlod(_MainTex, float4(v.uv, 0, 0)).x;
 
