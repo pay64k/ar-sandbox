@@ -127,6 +127,8 @@
     <Compile Include="Assets\homography\Scripts\DynamicController.cs" />
     <Compile Include="Assets\homography\Scripts\Homography.cs" />
     <Compile Include="Assets\homography\Scripts\SelectionManager.cs" />
+    <Compile Include="Assets\kiectDepthCalibration.cs" />
+    <Compile Include="Assets\kinectDepthCalibration.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\GreenScreen\Materials\GreenScreenShader.shader" />

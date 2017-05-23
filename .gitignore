@@ -34,3 +34,14 @@ ar-sandbox-unity/sysinfo.txt
 ar-sandbox-unity/*.apk
 ar-sandbox-unity/*.unitypackage
 *.meta
+ar-sandbox-unity/s_Data/level0
+*.log
+ar-sandbox-unity/Library/ScriptAssemblies/Assembly-CSharp.dll
+*.mdb
+*.db
+ar-sandbox-unity/s_Data/globalgamemanagers
+ar-sandbox-unity/s_Data/globalgamemanagers.assets
+ar-sandbox-unity/Library/metadata/aa/aa75975638794c94cbdf133e6fcc6be7
+ar-sandbox-unity/Library/metadata/00/00000000000000004000000000000000
+ar-sandbox-unity/Library/LastSceneManagerSetup.txt
+*.buildreport

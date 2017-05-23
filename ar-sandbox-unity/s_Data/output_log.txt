@@ -21,14 +21,14 @@ Platform assembly: C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity
 Loading C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity\s_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
 Platform assembly: C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity\s_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
 Loading C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity\s_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-- Completed reload, in  0.142 seconds
+- Completed reload, in  0.020 seconds
 Platform assembly: C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity\s_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity\s_Data\Managed\System.dll (this message is harmless)
 desktop: 1280x800 60Hz; virtual: 3200x1200 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 1.057726 ms
+UnloadTime: 2.570734 ms
 Platform assembly: C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity\s_Data\Managed\System.Runtime.Serialization.dll (this message is harmless)
 Platform assembly: C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity\s_Data\Managed\System.Xml.dll (this message is harmless)
 ----Kinect started----
@@ -36,9 +36,5 @@ Platform assembly: C:\Users\s127578\Documents\GitHub\ar-sandbox\ar-sandbox-unity
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 30e0 -> priority: 1 
-  Thread -> id: 2498 -> priority: 1 
-Loaded camera: (0.1327, 4.114, -0.3782)(0.7069, -0.01837, 0.01738, 0.7068)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
+  Thread -> id: 2eb8 -> priority: 1 
+  Thread -> id: 249c -> priority: 1 
